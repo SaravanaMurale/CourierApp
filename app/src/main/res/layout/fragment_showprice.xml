@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/ten_dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/shippingOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/shipping_options"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/priceDetailsCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shippingOptions"
+        android:layout_marginTop="@dimen/twenty_dp"
+        app:cardCornerRadius="@dimen/five_dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ten_dp">
+
+            <TextView
+                android:id="@+id/expressDomestic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Express Domestic" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/expressDomestic"
+                android:layout_marginTop="@dimen/twenty_dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/deliveryDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/twenty_five_dp"
+                android:layout_toLeftOf="@+id/priceArrow"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Delivery Day" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/deliveryDay"
+                android:layout_marginTop="@dimen/twenty_dp"
+                android:layout_marginRight="@dimen/fifteen_dp"
+                android:layout_toLeftOf="@id/priceArrow"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Today End Of The Day" />
+
+            <ImageView
+                android:id="@+id/priceArrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/deliveryDay"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/arrow" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/makeAccountable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/twenty_dp"
+        android:background="@drawable/rectangle_shpae"
+        android:padding="@dimen/eight_dp"
+        android:text="@string/make_accountable"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+</RelativeLayout>

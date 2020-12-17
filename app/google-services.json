@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "976175233553",
+    "firebase_url": "https://courierapp-90c81.firebaseio.com",
+    "project_id": "courierapp-90c81",
+    "storage_bucket": "courierapp-90c81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976175233553:android:472f784e17eee47afbcfb0",
+        "android_client_info": {
+          "package_name": "com.example.courierapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976175233553-6po1vq4ns7cu7057ju5hb1ul9epigrqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.courierapp",
+            "certificate_hash": "9852a2aa66c1aae5906d6710abfd3f8bad7ee92c"
+          }
+        },
+        {
+          "client_id": "976175233553-hdh0nps8ekpeb2fbsppibkass86ffigq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAysTNLcbZb6a6OQj4LaNsqXiFs5sp3toQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976175233553-hdh0nps8ekpeb2fbsppibkass86ffigq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

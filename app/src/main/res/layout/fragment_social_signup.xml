@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+
+        <com.shobhitpuri.custombuttons.GoogleSignInButton
+            android:id="@+id/gmailSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_marginRight="@dimen/ten_dp"
+            android:layout_marginBottom="@dimen/five_dp"
+            android:background="@drawable/rectangel_white"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="left|center_vertical"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/continue_Gmail"
+            android:textColor="@color/red"
+
+            />
+
+        <TextView
+            android:id="@+id/othersignin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/gmailSignup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/five_dp"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="@dimen/ten_dp"
+            android:paddingRight="@dimen/ten_dp"
+            android:text="@string/other_singin"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fiften_sp"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_above="@id/gmailSignup"
+            android:layout_marginBottom="@dimen/thiteen_dp"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginRight="@dimen/five_dp"
+            android:layout_toLeftOf="@id/othersignin"
+            android:background="@color/grey_black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_above="@id/gmailSignup"
+            android:layout_marginBottom="@dimen/thiteen_dp"
+            android:layout_marginLeft="@dimen/five_dp"
+            android:layout_marginRight="@dimen/five_dp"
+            android:layout_toRightOf="@id/othersignin"
+            android:background="@color/grey_black" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

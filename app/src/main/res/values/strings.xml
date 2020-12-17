@@ -1,0 +1,144 @@
+<resources>
+    <string name="app_name">Sun Atlantic</string>
+    <string name="api_key">AIzaSyCnG_pJ7ZVHK3CyT1Y8OG_ortNhgvJbxBQ</string>
+
+    <string name="iam">I am Mobile Number</string>
+
+    <string name="login">Login</string>
+    <string name="continue_Gmail">Continue with Gmail</string>
+    <string name="signup">Sign Up</string>
+    <string name="other_singin">Other Signin Options</string>
+    <string name="forget_password">Forget Password ?</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Drawable Menu-->
+    <string name="order_shipment">Order Shipment</string>
+    <string name="trackshipment">Track Shipment</string>
+    <string name="schedule_pickup">Schedule PickUp</string>
+    <string name="my_shipments">My Shipments</string>
+    <string name="contactus">Contact Us</string>
+    <string name="my_profile">My Profile</string>
+    <string name="logout">Logout</string>
+
+    <!--Quote Fragment-->
+    <string name="get_quote">Get Quote</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="pickup">city,suburb,postcode</string>
+    <string name="delivery">city,suburb,postcode</string>
+    <string name="service">Service</string>
+
+    <!--Map Activity-->
+    <string name="search_place">Search a place</string>
+
+    <string name="shipping_options">Shipping options</string>
+    <string name="lower_vers">You have lower android version</string>
+
+    <!--OTP Activity-->
+    <string name="submit">Submit</string>
+    <string name="change_password">Change Password</string>
+
+
+    <!--Profile Fragment-->
+    <string name="update">Update</string>
+
+    <!--Error Response-->
+    <string name="wrong_pass">You have entered wrong mobile number or password</string>
+
+    <!--Forget Password Activity-->
+    <string name="enter">Please enter 10 digit mobile number</string>
+
+    <string name="forgetPasswordLarge">Forgot Your Password?</string>
+    <string name="forget_text">To receover your password, you need to enter your register mobile number, we will send you OTP and you can reset your password</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="already_member">Your are already member in sunatlantics</string>
+
+
+    <!--Track Shipment-->
+    <string name="enter_shipment">Enter tracking number</string>
+
+    <!--Contact Us -->
+    <string name="general_shipping">General Shipping</string>
+    <string name="email_con">cuctomercare@sunatlantics.com</string>
+    <string name="customer_service_hot">Customer Service Hotline</string>
+    <string name="mob1">1800 200 1345</string>
+    <string name="mob2">1800 200 1345</string>
+
+    <string name="monfri">Monday - Friday </string>
+    <string name="time">00:00-23:59</string>
+
+    <string name="satsun">Saturday - Sunday </string>
+    <string name="time2">00:00-23:59</string>
+
+    <string name="tech_support">Technical Support</string>
+    <string name="tech_support_email">helpdesk@sunatlantics.com</string>
+    <string name="phone">9999999999</string>
+    <string name="phone_num">1800 209 3345</string>
+    <string name="tech_monfri">Monday - Friday </string>
+    <string name="tech_time">10:00-20:00</string>
+    <string name="sunday">Sunday</string>
+    <string name="closed">Closed</string>
+
+
+    <!--Schedule Pickup-->
+
+    <string name="accout">Account</string>
+    <string name="cash">Cash</string>
+
+    <string name="shipper_info">Shipper Information</string>
+    <string name="company_name">Company Name*</string>
+    <string name="address">Address</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_num">Contact Number</string>
+    <string name="email">Email</string>
+    <string name="rece_info">Receiver Information</string>
+
+    <string name="recev_info">Receiver Information</string>
+    <string name="select_service">Select Service</string>
+    <string name="instruction">Instruction</string>
+    <string name="instruction_hint">Please pass any suggestions to rider</string>
+
+    <string name="make_accountable">Make Accountable</string>
+
+
+    <string-array name="SelectService">
+        <item>Select Service</item>
+        <item>Delivery</item>
+        <item>Collection</item>
+        <item>Express</item>
+        <item>Payment</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="SelectItem">
+        <item>Select Item</item>
+        <item>Document</item>
+        <item>Food</item>
+        <item>Clothing</item>
+        <item>Electronics</item>
+        <item>Fragile</item>
+        <item>Medical</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="SelectWeight">
+        <item>Select Weight</item>
+        <item> Less than 1kg </item>
+        <item>1kg</item>
+        <item>2kg</item>
+        <item>3kg</item>
+        <item>4kg-50kg</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

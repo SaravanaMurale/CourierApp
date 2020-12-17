@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/five_dp"
+    android:layout_marginTop="@dimen/ten_dp"
+    android:layout_marginRight="@dimen/five_dp">
+
+    <LinearLayout
+        android:id="@+id/trackShipmentBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/ten_dp"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/trackShipment_trackingNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Tracking #">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/trackShipment_trackingDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Data">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/trackShipmenttrackingView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="View Status">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/trackShipmentBlock"
+        android:layout_marginTop="@dimen/three_dp"
+        android:background="@color/gray">
+
+    </View>
+
+
+</RelativeLayout>
