@@ -2,6 +2,7 @@ package com.courier.courierapp.activity;
 
 import android.Manifest;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
@@ -96,11 +97,16 @@ public class PDFGenerationActivity extends AppCompatActivity {
 */
             //First Row
 
+
+            myPaint.setColor(Color.rgb(247,147,30));
+            canvas.drawRect(200, 200, 200, 200, myPaint);
+
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
             myPaint.setStyle(Paint.Style.FILL);
             myPaint.setColor(getResources().getColor(R.color.sun_atlantic_color));
-            canvas.drawText("NAME OF SENDER", 80, 110, myPaint);
+
+            canvas.drawText("NAME OF SEN", 80, 110, myPaint);
 
             //BOX VERTICAL LINE
             myPaint.setStrokeWidth(2);
@@ -519,8 +525,9 @@ public class PDFGenerationActivity extends AppCompatActivity {
 
             Toast.makeText(this, "PDF Generated", Toast.LENGTH_LONG).show();
 
-            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "FirstPdf.pdf");
+            //File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "FirstPdf.pdf");
 
+            File file = new File(Environment.getExternalStorageDirectory(), "FirstPdf.pdf");
             try {
                 pdfDocument.writeTo(new FileOutputStream(file));
             } catch (IOException e) {

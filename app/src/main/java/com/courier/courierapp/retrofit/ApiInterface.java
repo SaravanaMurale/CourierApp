@@ -13,6 +13,7 @@ import com.courier.courierapp.model.LoginRequest;
 import com.courier.courierapp.model.LoginResponse;
 import com.courier.courierapp.model.MobileNumUpdateRequest;
 import com.courier.courierapp.model.PDFGenerationRequest;
+import com.courier.courierapp.model.PDFGenerationResponse;
 import com.courier.courierapp.model.PasswordUpdateRequest;
 import com.courier.courierapp.model.PaymentRequest;
 import com.courier.courierapp.model.PaymentUserResponse;
@@ -118,7 +119,7 @@ public interface ApiInterface {
 
     @POST(BaseURL.DOMAIN_NAME + "pdfGenerate")
     @Headers({"Content-Type:application/json"})
-    Call<GetMyAllShipmentDTO> getSinglePDFDocumnet(@Header("Authorization") String token, @Body PDFGenerationRequest pdfGenerationRequest);
+    Call<PDFGenerationResponse> getSinglePDFDocumnet(@Header("Authorization") String token, @Body PDFGenerationRequest pdfGenerationRequest);
 
 
     @Headers({"Content-Type:application/json"})

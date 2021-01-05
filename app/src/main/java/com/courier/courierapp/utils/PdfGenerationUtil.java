@@ -4,21 +4,26 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.location.Address;
 import android.os.Environment;
 import android.widget.Toast;
 
 
 import com.courier.courierapp.R;
 import com.courier.courierapp.model.GetMyAllShipmentDTO;
+import com.courier.courierapp.model.PDFGenerationDTO;
 import com.courier.courierapp.model.PDFGenerationRequest;
+import com.courier.courierapp.model.PDFGenerationResponse;
 import com.courier.courierapp.retrofit.ApiClient;
 import com.courier.courierapp.retrofit.ApiInterface;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +34,7 @@ public class PdfGenerationUtil {
     Context context;
     Dialog dialog;
 
-    GetMyAllShipmentDTO getMyAllShipmentDTO;
+    PDFGenerationResponse pdfGenerationResponse;
 
     public PdfGenerationUtil(Context context) {
         this.context = context;
@@ -51,17 +56,29 @@ public class PdfGenerationUtil {
 
         PDFGenerationRequest pdfGenerationRequest = new PDFGenerationRequest(PreferenceUtil.getValueInt(context, PreferenceUtil.USER_ID), trackNum);
 
-        Call<GetMyAllShipmentDTO> call = api.getSinglePDFDocumnet(bearerWithToken, pdfGenerationRequest);
-        call.enqueue(new Callback<GetMyAllShipmentDTO>() {
+        Call<PDFGenerationResponse> call = api.getSinglePDFDocumnet(bearerWithToken, pdfGenerationRequest);
+        call.enqueue(new Callback<PDFGenerationResponse>() {
             @Override
-            public void onResponse(Call<GetMyAllShipmentDTO> call, Response<GetMyAllShipmentDTO> response) {
-                getMyAllShipmentDTO = response.body();
+            public void onResponse(Call<PDFGenerationResponse> call, Response<PDFGenerationResponse> response) {
+                pdfGenerationResponse = response.body();
+
+               List<PDFGenerationDTO> pdfGenerationDTOS= pdfGenerationResponse.getPdfGenerationResponse();
                 LoaderUtil.dismisProgressBar(context, dialog);
-                generatePDF();
+               if(pdfGenerationDTOS!=null){
+                   PDFGenerationDTO pdfGenerationDTO=pdfGenerationDTOS.get(0);
+
+                   generatePDF(pdfGenerationDTO);
+
+               }
+
+               //pdfGenerationDTOS.get(i).get
+
+
+
             }
 
             @Override
-            public void onFailure(Call<GetMyAllShipmentDTO> call, Throwable t) {
+            public void onFailure(Call<PDFGenerationResponse> call, Throwable t) {
 
             }
         });
@@ -70,7 +87,7 @@ public class PdfGenerationUtil {
     }
 
     @SuppressLint("ResourceAsColor")
-    private void generatePDF() {
+    private void generatePDF(PDFGenerationDTO pdfGenerationDTO) {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
 
@@ -106,6 +123,10 @@ public class PdfGenerationUtil {
 */
             //First Row
 
+            /*myPaint.setColor(Color.rgb(247,147,30));
+            canvas.drawRect(10, 80, myPageInfo.getPageWidth() - 200, 100, myPaint);*/
+
+
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
             myPaint.setStyle(Paint.Style.FILL);
@@ -114,7 +135,7 @@ public class PdfGenerationUtil {
 
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
-            canvas.drawText("Murali", 80, 160, myPaint);
+            canvas.drawText(pdfGenerationDTO.getPdfUserName(), 80, 160, myPaint);
 
             //BOX VERTICAL LINE
             myPaint.setStrokeWidth(2);
@@ -127,7 +148,7 @@ public class PdfGenerationUtil {
 
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
-            canvas.drawText("8888888888", 210, 160, myPaint);
+            canvas.drawText(pdfGenerationDTO.getPdfUserMobile(), 210, 160, myPaint);
 
 
             //BOX VERTICAL LINE
@@ -185,7 +206,7 @@ public class PdfGenerationUtil {
 
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
-            canvas.drawText("Sun015", 210, 210, myPaint);
+            canvas.drawText(pdfGenerationDTO.getPdfTrackNumber(), 210, 210, myPaint);
 
             //BOX VERTICAL LINE
             myPaint.setStrokeWidth(2);
@@ -195,36 +216,36 @@ public class PdfGenerationUtil {
             myPaint.setTextSize(13.0f);
             canvas.drawText("RECEIVER ADDRESS", 340, 210, myPaint);
 
-            /*MathUtil.stringToDouble(getMyAllShipmentDTO.getFromLat());
-            MathUtil.stringToDouble(getMyAllShipmentDTO.getFromLongi());*/
+            /*MathUtil.stringToDouble(pdfGenerationDTO.getPdfShipperLat());
+            MathUtil.stringToDouble(pdfGenerationDTO.getPdfReceiverLongi());*/
 
-            //List<Address> geoAddresses = GpsUtils.getAddressFromMap(context, MathUtil.stringToDouble(getMyAllShipmentDTO.getFromLat()), MathUtil.stringToDouble(getMyAllShipmentDTO.getFromLongi()));
+            //List<Address> geoAddresses = GpsUtils.getAddressFromMap(context, MathUtil.stringToDouble(pdfGenerationDTO.getPdfReceiverLat()), MathUtil.stringToDouble(pdfGenerationDTO.getPdfReceiverLongi()));
+            List<Address> geoAddresses = GpsUtils.getAddressFromMap(context, 13.0067,80.2206);
 
-            /*if (geoAddresses.size() != 0) {
+            if (geoAddresses.size() != 0) {
 
-                String address = geoAddresses.get(0).getAddressLine(0);
+               // String address = geoAddresses.get(0).getAddressLine(0);
                 String area = geoAddresses.get(0).getLocality();
                 String city = geoAddresses.get(0).getAdminArea();
                 String country = geoAddresses.get(0).getCountryName();
                 String postalCode = geoAddresses.get(0).getPostalCode();
                 String subAdminArea = geoAddresses.get(0).getSubAdminArea();
-*/
 
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
-            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 255, myPaint);
+
+            /*canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 255, myPaint);
             canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 275, myPaint);
             canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 290, myPaint);
-            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 310, myPaint);
+            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 390, 310, myPaint);*/
 
-                /*canvas.drawText(address, 390, 255, myPaint);
+               // canvas.drawText(address, 390, 255, myPaint);
                 canvas.drawText(area, 390, 275, myPaint);
                 canvas.drawText(city, 390, 290, myPaint);
                 canvas.drawText(postalCode, 390, 310, myPaint);
-                canvas.drawText(subAdminArea, 390, 310, myPaint);
-*/
+                canvas.drawText(subAdminArea, 390, 335, myPaint);
 
-            //}
+            }
 
 
             //LONG HORIZONTAL LINE
@@ -240,27 +261,34 @@ public class PdfGenerationUtil {
             canvas.drawText("SENDER ADDRESS", 80, 260, myPaint);
 
 
-            //List<Address> geoDeliveryAddresses = GpsUtils.getAddressFromMap(context, MathUtil.stringToDouble(getMyAllShipmentDTO.getDeliveryLat()), MathUtil.stringToDouble(getMyAllShipmentDTO.getDeliveryLongi()));
+            //List<Address> geoDeliveryAddresses = GpsUtils.getAddressFromMap(context, MathUtil.stringToDouble(pdfGenerationDTO.getPdfShipperLat()), MathUtil.stringToDouble(pdfGenerationDTO.getPdfShipperLongi()));
+            List<Address> geoDeliveryAddresses = GpsUtils.getAddressFromMap(context, 13.0067,80.2206);
 
-            //if (geoDeliveryAddresses.size() != 0) {
+            if (geoDeliveryAddresses.size() != 0) {
 
-                /*String address = geoDeliveryAddresses.get(0).getAddressLine(0);
+                //String address = geoDeliveryAddresses.get(0).getAddressLine(0);
                 String area = geoDeliveryAddresses.get(0).getLocality();
                 String city = geoDeliveryAddresses.get(0).getAdminArea();
                 String country = geoDeliveryAddresses.get(0).getCountryName();
                 String postalCode = geoDeliveryAddresses.get(0).getPostalCode();
                 String subAdminArea = geoDeliveryAddresses.get(0).getSubAdminArea();
-*/
+
 
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
-            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 300, myPaint);
+            /*canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 300, myPaint);
             canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 315, myPaint);
             canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 330, myPaint);
             canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 345, myPaint);
-            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 345, myPaint);
+            canvas.drawText("1188,928, M.E.Kuppu Swamy Street", 130, 360, myPaint);
+*/
+                //canvas.drawText(address, 130, 300, myPaint);
+                canvas.drawText(area, 130, 315, myPaint);
+                canvas.drawText(city, 130, 330, myPaint);
+                canvas.drawText(postalCode, 130, 345, myPaint);
+                canvas.drawText(subAdminArea, 130, 360, myPaint);
 
-            //}
+            }
 
             //Horizontal LINE
             myPaint.setStrokeWidth(2);
@@ -295,6 +323,16 @@ public class PdfGenerationUtil {
             //End Sixth Row
 
             //Seventh Row
+
+
+            myPaint.setStrokeWidth(0);
+            myPaint.setTextSize(13.0f);
+            canvas.drawText(pdfGenerationDTO.getPdfServiceName(), 55, 530, myPaint);
+
+            myPaint.setStrokeWidth(0);
+            myPaint.setTextSize(13.0f);
+            canvas.drawText(pdfGenerationDTO.getPdfServiceItem(), 140, 530, myPaint);
+
             Paint textColorChange = new Paint();
             /*switch (getMyAllShipmentDTO.getProductType()) {
 
@@ -430,6 +468,10 @@ public class PdfGenerationUtil {
             myPaint.setTextSize(13.0f);
             canvas.drawText("NUMBER OF PIECES:", 80, 900, myPaint);
 
+            myPaint.setStrokeWidth(0);
+            myPaint.setTextSize(13.0f);
+            canvas.drawText("pice", 170, 900, myPaint);
+
             //HORIZONTAL LINE
             myPaint.setStrokeWidth(2);
             canvas.drawLine(startXPosition, startYPosition + 800, 270, startYPosition + 800, myPaint);
@@ -439,6 +481,10 @@ public class PdfGenerationUtil {
             myPaint.setTextSize(13.0f);
             canvas.drawText("WEIGHT:", 55, 950, myPaint);
 
+            myPaint.setStrokeWidth(0);
+            myPaint.setTextSize(13.0f);
+            canvas.drawText(pdfGenerationDTO.getPdfServiceWeight(), 170, 950, myPaint);
+
             //HORIZONTAL LINE
             myPaint.setStrokeWidth(2);
             canvas.drawLine(startXPosition, startYPosition + 850, 270, startYPosition + 850, myPaint);
@@ -446,6 +492,10 @@ public class PdfGenerationUtil {
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(13.0f);
             canvas.drawText("VALUE:", 55, 1000, myPaint);
+
+            myPaint.setStrokeWidth(0);
+            myPaint.setTextSize(13.0f);
+            canvas.drawText("valu", 170, 1000, myPaint);
 
             //BOX VERTICAL LINE
             myPaint.setStrokeWidth(2);
@@ -467,7 +517,7 @@ public class PdfGenerationUtil {
             myPaint.setTextSize(13.0f);
             canvas.drawText("ORDER DESCRIPTION:", 340, 450, myPaint);
 
-            myPaint.setStrokeWidth(0);
+            /*myPaint.setStrokeWidth(0);
             myPaint.setTextSize(9.0f);
             canvas.drawText("ORDER DESCRIPTION Line 1:", 480, 430, myPaint);
 
@@ -475,7 +525,7 @@ public class PdfGenerationUtil {
             myPaint.setStrokeWidth(0);
             myPaint.setTextSize(9.0f);
             canvas.drawText("ORDER DESCRIPTION Line 2:", 400, 450, myPaint);
-
+*/
 
             //HORIZONTAL LINE
             myPaint.setStrokeWidth(2);
@@ -632,7 +682,7 @@ public class PdfGenerationUtil {
 
 
             //File file = new File(Environment.getExternalStorageDirectory(), "SunAtlantics.pdf");
-            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "SunAtlantics.pdf");
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MuraliSA.pdf");
 
 
             try {
