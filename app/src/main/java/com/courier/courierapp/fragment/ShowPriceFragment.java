@@ -92,13 +92,17 @@ public class ShowPriceFragment extends Fragment {
         } else {
 
 
-
             priceDetailsCardView.setEnabled(true);
             priceDetailsCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    getUserDetailsForPayment();
+                    if (trackNumber == null) {
+                        Toast.makeText(getActivity(), "You can view only quotation here", Toast.LENGTH_LONG).show();
+                    } else if(trackNumber!=null){
+                        getUserDetailsForPayment();
+                    }
+
 
                 }
             });
@@ -146,7 +150,7 @@ public class ShowPriceFragment extends Fragment {
 
         String bearerWithToken = PreferenceUtil.getValueString(getActivity(), PreferenceUtil.BEARER) + " " + PreferenceUtil.getValueString(getActivity(), PreferenceUtil.AUTH_TOKEN);
 
-        Call<PaymentUserResponse> call = api.getPaymentUserDetails(bearerWithToken,getPaymentUserDetailsRequest);
+        Call<PaymentUserResponse> call = api.getPaymentUserDetails(bearerWithToken, getPaymentUserDetailsRequest);
         call.enqueue(new Callback<PaymentUserResponse>() {
             @Override
             public void onResponse(Call<PaymentUserResponse> call, Response<PaymentUserResponse> response) {
@@ -166,7 +170,7 @@ public class ShowPriceFragment extends Fragment {
                     }
 
 
-                }else {
+                } else {
                     LoaderUtil.dismisProgressBar(getActivity(), dialog);
                 }
 
