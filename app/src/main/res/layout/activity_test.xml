@@ -23,9 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="@dimen/ten_dp"
-            android:layout_marginTop="@dimen/ten_dp"
-            android:layout_marginEnd="@dimen/ten_dp">
+            android:layout_marginStart="@dimen/twenty_dp"
+            android:layout_marginEnd="@dimen/twenty_dp">
 
             <RelativeLayout
                 android:id="@+id/schedulePickupCalender"
@@ -67,8 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="checkRadioButton"
-                    android:text="@string/accout"
-                    android:textColor="@color/grey_black"/>
+                    android:text="@string/accout" />
 
                 <RadioButton
                     android:id="@+id/cash"
@@ -77,8 +75,7 @@
                     android:layout_marginLeft="@dimen/ten_dp"
                     android:layout_toRightOf="@id/account"
                     android:onClick="checkRadioButton"
-                    android:text="@string/cash"
-                    android:textColor="@color/grey_black"/>
+                    android:text="@string/cash" />
 
             </RelativeLayout>
 
@@ -108,7 +105,39 @@
 
             <!--Address-->
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten_dp">
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/shipper_companyAddr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ten_dp"
+                    android:layout_marginRight="@dimen/ten_dp"
+                    android:layout_toLeftOf="@+id/fromAddrShedulePickup">
+
+                    <EditText
+                        android:id="@+id/shipper_edit_companyAddr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:hint="@string/address"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress"
+                        android:maxLines="2"
+                        android:textSize="@dimen/fifteen_sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/fromAddrShedulePickup"
+                    android:layout_width="@dimen/forty_dp"
+                    android:layout_height="@dimen/forty_dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/ten_dp"
+                    android:src="@drawable/placeholder" />
+            </RelativeLayout>
 
 
             <!--Contact Name-->
@@ -176,40 +205,6 @@
                     android:textSize="@dimen/fifteen_sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ten_dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/shipper_companyAddr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ten_dp"
-                    android:layout_marginRight="@dimen/ten_dp"
-                    android:layout_toLeftOf="@+id/fromAddrShedulePickup">
-
-                    <EditText
-                        android:id="@+id/shipper_edit_companyAddr"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:hint="@string/address"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPostalAddress"
-                        android:maxLines="2"
-                        android:textSize="@dimen/fifteen_sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/fromAddrShedulePickup"
-                    android:layout_width="@dimen/thirty_dp"
-                    android:layout_height="@dimen/thirty_dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/ten_dp"
-                    android:src="@drawable/placeholder" />
-            </RelativeLayout>
-
         </LinearLayout>
 
 
@@ -217,19 +212,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/twenty_dp"
+            android:layout_marginTop="@dimen/five_dp"
             android:background="@color/grey"
             android:padding="@dimen/fifteen_dp"
             android:text="@string/rece_info"
             android:textColor="@color/black"
             android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="@dimen/ten_dp"
-        android:layout_marginEnd="@dimen/ten_dp">
 
         <!--company Name-->
         <com.google.android.material.textfield.TextInputLayout
@@ -252,8 +240,41 @@
                 android:textSize="@dimen/fifteen_sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--Address-->
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_dp">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/receiver_companyAddr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten_dp"
+                android:layout_marginRight="@dimen/ten_dp"
+                android:layout_toLeftOf="@+id/toAddrShedulePickup">
+
+                <EditText
+                    android:id="@+id/receiver_edit_companyAddr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="@string/address"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress"
+                    android:textSize="@dimen/fifteen_sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/toAddrShedulePickup"
+                android:layout_width="@dimen/forty_dp"
+                android:layout_height="@dimen/forty_dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:src="@drawable/placeholder" />
+
+        </RelativeLayout>
         <!--Contact Name-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/receiver_contactName"
@@ -274,6 +295,7 @@
                 android:inputType="textPersonName"
                 android:textSize="@dimen/fifteen_sp" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <!--Contact Number-->
         <com.google.android.material.textfield.TextInputLayout
@@ -308,7 +330,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ten_dp"
-                android:layout_marginRight="@dimen/ten_dp">
+                android:layout_marginRight="@dimen/ten_dp"
+                android:layout_toLeftOf="@id/checkBox">
 
                 <EditText
                     android:id="@+id/receiver_edit_Email"
@@ -322,50 +345,22 @@
                     android:textSize="@dimen/fifteen_sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--Address-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/sixty_dp">
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="@dimen/forty_dp"
+                android:layout_height="@dimen/forty_dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/receiver_companyAddr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ten_dp"
-                    android:layout_marginRight="@dimen/ten_dp"
-                    android:layout_toLeftOf="@+id/toAddrShedulePickup">
-
-                    <EditText
-                        android:id="@+id/receiver_edit_companyAddr"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:hint="@string/address"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPostalAddress"
-                        android:textSize="@dimen/fifteen_sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/toAddrShedulePickup"
-                    android:layout_width="@dimen/thirty_dp"
-                    android:layout_height="@dimen/thirty_dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/ten_dp"
-                    android:src="@drawable/placeholder" />
-
-            </RelativeLayout>
+                />
 
         </RelativeLayout>
-
-    </LinearLayout>
 
         <!--Select Service-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/twenty_dp"
+            android:layout_marginTop="@dimen/five_dp"
             android:background="@color/grey"
             android:padding="@dimen/fifteen_dp"
             android:text="@string/select_service"
@@ -379,9 +374,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/thirty_dp"
             android:layout_marginTop="@dimen/twenty_dp"
-            android:layout_marginRight="@dimen/thirty_dp"
-            android:fontFamily="sans-serif-condensed"
-            ></Spinner>
+            android:layout_marginRight="@dimen/thirty_dp"></Spinner>
 
         <Spinner
             android:id="@+id/itemDetails_schePick"
@@ -390,9 +383,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/thirty_dp"
             android:layout_marginTop="@dimen/twenty_dp"
-            android:layout_marginRight="@dimen/thirty_dp"
-            android:fontFamily="sans-serif-condensed"
-            ></Spinner>
+            android:layout_marginRight="@dimen/thirty_dp"></Spinner>
 
         <Spinner
             android:id="@+id/itemWeight_schePick"
@@ -401,9 +392,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/thirty_dp"
             android:layout_marginTop="@dimen/twenty_dp"
-            android:layout_marginRight="@dimen/thirty_dp"
-            android:fontFamily="sans-serif-condensed"
-            ></Spinner>
+            android:layout_marginRight="@dimen/thirty_dp"></Spinner>
 
         <TextView
             android:layout_width="match_parent"
@@ -437,17 +426,16 @@
 
         <Button
             android:id="@+id/btn_schePick"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/twenty_dp"
-            android:background="@drawable/rectangel_white"
-            android:enabled="true"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:enabled="false"
             android:imeOptions="actionDone"
             android:text="@string/submit"
-            android:textColor="@color/grey_black" />
+            android:textColor="@color/white" />
+
 
     </LinearLayout>
 
 </ScrollView>
-

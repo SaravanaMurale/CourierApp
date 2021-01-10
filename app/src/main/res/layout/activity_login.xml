@@ -34,9 +34,9 @@
         android:layout_above="@id/socialMediaLoginBlock"
         android:layout_below="@+id/logoBlock"
         android:layout_marginLeft="@dimen/twenty_dp"
-        android:layout_marginTop="@dimen/fifty_dp"
+        android:layout_marginTop="@dimen/ten_dp"
         android:layout_marginRight="@dimen/twenty_dp"
-        android:layout_marginBottom="@dimen/fifty_dp"
+        android:layout_marginBottom="@dimen/forty_dp"
         android:orientation="vertical">
 
 
@@ -56,7 +56,7 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:singleLine="true"
-                android:textSize="@dimen/fiften_sp"
+                android:textSize="@dimen/seventeen_sp"
                 android:theme="@style/EditTextHintColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -78,7 +78,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLength="15"
-                android:textSize="@dimen/fiften_sp"
+                android:textSize="@dimen/seventeen_sp"
                 android:theme="@style/EditTextHintColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +103,7 @@
             android:fontFamily="sans-serif-condensed"
             android:text="@string/forget_password"
             android:textColor="@color/sun_atlantic_color"
-            android:textSize="@dimen/fifteen_sp"
+            android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold" />
 
         <TextView
@@ -118,7 +118,7 @@
             android:fontFamily="sans-serif-condensed"
             android:text="@string/signup"
             android:textColor="@color/sun_atlantic_color"
-            android:textSize="@dimen/fifteen_sp"
+            android:textSize="@dimen/seventeen_sp"
             android:textStyle="bold"
 
             />

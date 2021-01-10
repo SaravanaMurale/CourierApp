@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/fifteen_dp"
+    android:layout_margin="@dimen/twenty_dp"
     android:background="@color/grey"
     android:orientation="vertical">
 
@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/five_dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/email_con" />
+                android:text="@string/email_con"
+                android:textSize="@dimen/fifteen_dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -78,14 +79,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/five_dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/mob1" />
+                android:text="@string/mob1"
+                android:textSize="@dimen/fifteen_dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/five_dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/mob2" />
+                android:text="@string/mob2"
+                android:textSize="@dimen/fifteen_dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -107,7 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/five_dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/time" />
+                android:text="@string/time"
+                android:textSize="@dimen/fifteen_dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +128,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/five_dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/time2" />
+                android:text="@string/time2"
+                android:textSize="@dimen/fifteen_dp" />
 
         </LinearLayout>
 
@@ -157,7 +162,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/five_dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="@string/tech_support_email" />
+            android:text="@string/tech_support_email"
+            android:textSize="@dimen/fifteen_dp" />
 
         <View
             android:layout_width="match_parent"
@@ -179,7 +185,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/five_dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="@string/mob1" />
+            android:text="@string/mob1"
+            android:textSize="@dimen/fifteen_dp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -198,10 +205,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tech_time"
-            android:fontFamily="sans-serif-condensed"
             android:layout_margin="@dimen/five_dp"
-            />
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/tech_time"
+            android:textSize="@dimen/fifteen_dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,15 +217,16 @@
             android:textColor="@color/black"
             android:fontFamily="sans-serif-condensed"
             android:layout_margin="@dimen/five_dp"
-            />
+            android:textStyle="bold"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/five_dp"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/closed"
             android:textColor="@color/red"
-            android:fontFamily="sans-serif-condensed"
-            android:layout_margin="@dimen/five_dp"
-            />
+            android:textSize="@dimen/fifteen_dp" />
 
 
     </LinearLayout>
