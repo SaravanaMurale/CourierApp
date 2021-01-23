@@ -7,7 +7,7 @@
     <string name="login">Login</string>
     <string name="continue_Gmail">Continue with Gmail</string>
     <string name="signup">Sign Up</string>
-    <string name="other_singin">Other Signin Options</string>
+    <string name="other_singin">Other sign in options</string>
     <string name="forget_password">Forget Password ?</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -30,8 +30,8 @@
     <string name="get_quote">Get Quote</string>
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="pickup">city,suburb,postcode</string>
-    <string name="delivery">city,suburb,postcode</string>
+    <string name="pickup">City, Suburb, Postcode</string>
+    <string name="delivery">City, Suburb, Postcode</string>
     <string name="service">Service</string>
 
     <!--Map Activity-->

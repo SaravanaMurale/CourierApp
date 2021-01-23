@@ -28,7 +28,7 @@
             app:lazyloader_animDur="800"
             app:lazyloader_dotsDist="5dp"
 
-            app:lazyloader_dotsRadius="8dp"
+            app:lazyloader_dotsRadius="7dp"
             app:lazyloader_firstDelayDur="150"
             app:lazyloader_firstDotColor="@color/sun_atlantic_color"
             app:lazyloader_interpolator="@android:anim/decelerate_interpolator"

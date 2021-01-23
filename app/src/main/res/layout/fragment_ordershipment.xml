@@ -43,8 +43,8 @@
 
             <ImageView
                 android:id="@+id/calenderIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
                 android:layout_alignParentRight="true"
                 android:layout_margin="@dimen/five_dp"
                 android:src="@drawable/calendar" />
@@ -83,12 +83,10 @@
 
             <ImageView
                 android:id="@+id/fromAddrIcon"
-                android:layout_width="@dimen/fifty_dp"
-                android:layout_height="@dimen/forty_dp"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/placeholder"
-
-                />
+                android:src="@drawable/placeholder"/>
         </RelativeLayout>
 
 
@@ -122,8 +120,8 @@
 
             <ImageView
                 android:id="@+id/toAddrIcon"
-                android:layout_width="@dimen/fifty_dp"
-                android:layout_height="@dimen/forty_dp"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
                 android:layout_alignParentRight="true"
 
                 android:src="@drawable/placeholder" />
@@ -176,6 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fifteen_dp"
             android:background="@drawable/rectangel_white"
+            android:layout_gravity="center"
             android:enabled="true"
             android:text="Get Quote"
             android:textColor="@color/white"
@@ -189,6 +188,7 @@
             android:background="@drawable/rectangle_shpae"
             android:enabled="true"
             android:text="CLEAR"
+            android:imeOptions="actionDone"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
