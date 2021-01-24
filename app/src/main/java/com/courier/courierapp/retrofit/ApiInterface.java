@@ -138,5 +138,10 @@ public interface ApiInterface {
     @Headers({"Content-Type:application/json"})
     Call<ResponseBody> paymentGatewayURLCall(@Body PaymentRequest paymentRequest);
 
+    @POST(BaseURL.DOMAIN_NAME + "pushnotification")
+    @Headers({"Content-Type:application/json"})
+    Call<BaseResponse> saveNotificationTokenInServer(@Header("Authorization") String token,@Body LoginResponse loginResponse);
+
+
 
 }

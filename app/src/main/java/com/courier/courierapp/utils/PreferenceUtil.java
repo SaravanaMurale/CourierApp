@@ -23,6 +23,8 @@ public class PreferenceUtil {
 
     public static final String SCHEDULE_PICKUP_SUBMIT_STATUS = "schedule_pickup_submit_status";
 
+    public static final String NOTIFICATION="notification";
+
     public static void setValueString(Context context, String key, String value) {
 
         if (context == null) return;
