@@ -108,6 +108,12 @@ public class PasswordChangeActivity extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
             String password = newPassword.getText().toString().trim();
             String confirm_Password = confirmPassword.getText().toString().trim();
 
@@ -123,15 +129,9 @@ public class PasswordChangeActivity extends AppCompatActivity {
                 btn_password_update.setEnabled(false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     btn_password_update.setBackground(getDrawable(R.color.btn_disable));
-                    btn_password_update.setTextColor(R.color.black);
+                    btn_password_update.setTextColor(getApplication().getResources().getColor(R.color.black));
                 }
             }
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
         }
 
         @Override

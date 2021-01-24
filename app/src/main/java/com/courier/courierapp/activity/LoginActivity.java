@@ -189,10 +189,10 @@ public class LoginActivity extends AppCompatActivity {
                     //launchHomeScreen();
                 }
             } else {
-                Intent intent = new Intent(LoginActivity.this, MobileAuthActivity.class);
+              /*  Intent intent = new Intent(LoginActivity.this, MobileAuthActivity.class);
                 intent.putExtra("NUMBER", "9486994621");
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -349,7 +349,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GmailLoginResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
             }
         });
 
@@ -391,7 +391,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginAuthResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
             }
         });
     }
@@ -417,7 +417,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                        String token=PreferenceUtil.getValueString(LoginActivity.this,"notification_token");
+                        String token=PreferenceUtil.getValueString(LoginActivity.this,PreferenceUtil.NOTIFICATION);
 
                         if(token!=null){
                             saveFirebaseNotificationTokenInServer();
@@ -425,8 +425,6 @@ public class LoginActivity extends AppCompatActivity {
                         }else {
 
                         }
-
-
 
 
                         PreferenceUtil.setValueString(LoginActivity.this, PreferenceUtil.AUTH_TOKEN, loginAuthResponse.getAuthToken());
@@ -445,6 +443,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 } else {
+                    LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
                     Toast.makeText(LoginActivity.this, "You have entered wrong username or password", Toast.LENGTH_LONG).show();
                 }
 
@@ -453,7 +452,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginAuthResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
             }
         });
 
@@ -513,7 +512,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
             }
         });
 
