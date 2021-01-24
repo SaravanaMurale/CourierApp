@@ -80,6 +80,8 @@ TextView alreadyMember;
 
                 BaseResponse baseResponse=response.body();
 
+                LoaderUtil.dismisProgressBar(ForgetPasswordActivity.this, dialog);
+
                 if(baseResponse.getSuccess()==true){
                     launchOTPActivity();
                 }
@@ -90,7 +92,7 @@ TextView alreadyMember;
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(ForgetPasswordActivity.this, dialog);
             }
         });
 

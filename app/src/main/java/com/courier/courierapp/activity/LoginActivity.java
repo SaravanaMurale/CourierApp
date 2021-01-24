@@ -475,11 +475,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 BaseResponse baseResponse=response.body();
                 LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
-                if(baseResponse.getSuccess()){
-                    System.out.println("TokenInsertedSuccessfully");
-                }else {
-                    System.out.println("TokenIsNotInsertedSuccessfully");
+
+                if(baseResponse!=null){
+                    if(baseResponse.getSuccess()){
+                        System.out.println("TokenInsertedSuccessfully");
+                    }else {
+                        System.out.println("TokenIsNotInsertedSuccessfully");
+                    }
                 }
+
+
             }
 
             @Override
