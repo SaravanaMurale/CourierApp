@@ -28,6 +28,7 @@ import com.courier.courierapp.model.GmailRegisterRequest;
 import com.courier.courierapp.model.LoginAuthResponse;
 import com.courier.courierapp.model.LoginRequest;
 import com.courier.courierapp.model.LoginResponse;
+import com.courier.courierapp.model.SavePushNotification;
 import com.courier.courierapp.retrofit.ApiClient;
 import com.courier.courierapp.retrofit.ApiInterface;
 import com.courier.courierapp.utils.LoaderUtil;
@@ -416,17 +417,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginAuthResponse.getAuthToken() != null && loginAuthResponse.getTokenType() != null) {
 
 
-
-                        String token=PreferenceUtil.getValueString(LoginActivity.this,PreferenceUtil.NOTIFICATION);
-
-                        if(token!=null){
-                            saveFirebaseNotificationTokenInServer();
-                            System.out.println("FirebaseTomer"+token);
-                        }else {
-
-                        }
-
-
                         PreferenceUtil.setValueString(LoginActivity.this, PreferenceUtil.AUTH_TOKEN, loginAuthResponse.getAuthToken());
                         PreferenceUtil.setValueString(LoginActivity.this, PreferenceUtil.BEARER, loginAuthResponse.getTokenType());
 
@@ -458,43 +448,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void saveFirebaseNotificationTokenInServer() {
-
-        dialog = LoaderUtil.showProgressBar(this);
-        ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
-
-        /*int userid=PreferenceUtil.getValueInt(LoginActivity.this,PreferenceUtil.USER_ID);
-       String pToken=PreferenceUtil.getValueString(LoginActivity.this,PreferenceUtil.NOTIFICATION);*/
-
-        LoginResponse loginResponse=new LoginResponse(PreferenceUtil.getValueInt(LoginActivity.this,PreferenceUtil.USER_ID),PreferenceUtil.getValueString(LoginActivity.this,PreferenceUtil.NOTIFICATION));
-
-        Call<BaseResponse> call=apiInterface.saveNotificationTokenInServer(PreferenceUtil.getValueString(LoginActivity.this, PreferenceUtil.BEARER) + " " + PreferenceUtil.getValueString(LoginActivity.this, PreferenceUtil.AUTH_TOKEN),loginResponse);
-        call.enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-
-                BaseResponse baseResponse=response.body();
-                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
-
-                if(baseResponse!=null){
-                    if(baseResponse.getSuccess()){
-                        System.out.println("TokenInsertedSuccessfully");
-                    }else {
-                        System.out.println("TokenIsNotInsertedSuccessfully");
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
-                LoaderUtil.dismisProgressBar(LoginActivity.this, dialog);
-            }
-        });
-
-
-    }
 
     private void getUserDetails() {
         dialog = LoaderUtil.showProgressBar(this);

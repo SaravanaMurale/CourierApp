@@ -20,6 +20,7 @@ import com.courier.courierapp.model.PaymentRequest;
 import com.courier.courierapp.model.PaymentUserResponse;
 import com.courier.courierapp.model.RegisterRequest;
 import com.courier.courierapp.model.RegisterResponse;
+import com.courier.courierapp.model.SavePushNotification;
 import com.courier.courierapp.model.SchedulePickupRequest;
 import com.courier.courierapp.model.SchedulePickupResponse;
 import com.courier.courierapp.model.UpdatePriceRequest;
@@ -141,7 +142,7 @@ public interface ApiInterface {
 
     @POST(BaseURL.DOMAIN_NAME + "pushnotification")
     @Headers({"Content-Type:application/json"})
-    Call<BaseResponse> saveNotificationTokenInServer(@Header("Authorization") String token,@Body LoginResponse loginResponse);
+    Call<BaseResponse> saveNotificationTokenInServer(@Header("Authorization") String token,@Body SavePushNotification loginResponse);
 
     @GET(BaseURL.DOMAIN_NAME + "getNotification/{userid}")
     @Headers({"Content-Type:application/json"})
