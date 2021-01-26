@@ -63,11 +63,12 @@ public class MyFirebaseInstanceService extends FirebaseMessagingService {
         NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(this);
         nBuilder.setContentTitle(title)
                 .setContentText(message)
+                .setColor(getResources().getColor(R.color.sun_atlantic_color))
                 .setContentIntent(contentIntent)
                 .setAutoCancel(true)
                 .setPriority(1)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.icon_logo);
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .setSmallIcon(R.drawable.sun_logo);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
