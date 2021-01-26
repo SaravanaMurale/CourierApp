@@ -97,7 +97,7 @@ public class ShowPriceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    if (trackNumber == null) {
+                    if (trackNumber.equals("NULL")) {
                         Toast.makeText(getActivity(), "You can view only quotation here", Toast.LENGTH_LONG).show();
                     } else if(trackNumber!=null){
                         getUserDetailsForPayment();

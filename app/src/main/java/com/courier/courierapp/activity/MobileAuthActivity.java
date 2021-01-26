@@ -137,6 +137,7 @@ public class MobileAuthActivity extends AppCompatActivity {
 
     private void sendMobileNumberToFirebase(String mobileNum) {
         String countryCode="+91";
+        String countryCodeMalasiya ="+60";
         String phoneNumber=countryCode+mobileNum;
         System.out.println("MobileNumberWithCountryCode"+phoneNumber);
         try {

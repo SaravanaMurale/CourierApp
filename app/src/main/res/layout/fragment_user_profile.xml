@@ -152,7 +152,7 @@
             android:id="@+id/changePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="password" />
+            android:text="******" />
 
         <ImageView
             android:layout_width="15dp"
@@ -222,6 +222,7 @@
             android:text="Push Notification" />
 
         <Switch
+            android:id="@+id/pushNotificationSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -246,11 +247,11 @@
             android:text="Email" />
 
         <Switch
+            android:id="@+id/emailNotificationSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textOff="OFF"
-
             android:textOn="ON" />
 
 

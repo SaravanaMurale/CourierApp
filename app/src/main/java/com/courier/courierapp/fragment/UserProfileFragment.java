@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,8 @@ public class UserProfileFragment extends Fragment {
 
     String userName, userEmail, userMobile;
 
+    Switch pushNotificationSwitch,emailNotificationSwitch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,19 +62,22 @@ public class UserProfileFragment extends Fragment {
         mobileNumberEditText = (TextView) view.findViewById(R.id.mobileNumber);
         emailEditText = (TextView) view.findViewById(R.id.email);
 
+        pushNotificationSwitch=(Switch)view.findViewById(R.id.pushNotificationSwitch);
+        emailNotificationSwitch=(Switch)view.findViewById(R.id.emailNotificationSwitch);
+
 
         dogetUserDetails();
 
         userNameBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog("Enter Your Name", 1);
+                openDialog("Update Name", 1);
             }
         });
         mobileNumberBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog("Enter Mobile Number", 2);
+                openDialog("Update Mobile Number", 2);
             }
         });
 
@@ -78,14 +85,38 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                openDialog("Enter Email", 3);
+                openDialog("Update Email", 3);
             }
         });
 
         passwordBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog("Enter Password", 4);
+                openDialog("Update Password", 4);
+            }
+        });
+
+        pushNotificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(b){
+                    Toast.makeText(getActivity(),"Push Notification ON",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getActivity(),"Push Notification OFF",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        emailNotificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    Toast.makeText(getActivity(),"Email Notification ON",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getActivity(),"Email Notification OFF",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -128,7 +159,7 @@ public class UserProfileFragment extends Fragment {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(getActivity(), dialog);
             }
         });
 
@@ -144,6 +175,9 @@ public class UserProfileFragment extends Fragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.layout_dialog_userprofile, null);
 
+        final EditText update = (EditText) view.findViewById(R.id.updateName);
+        update.setHint(hintData);
+
         builder.setView(view);
 
         builder.setPositiveButton("UPDATE", new DialogInterface.OnClickListener() {
@@ -154,14 +188,13 @@ public class UserProfileFragment extends Fragment {
                 updateUserDetails(getUserUpdateData.getText().toString(), i);
 
 
-
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                dialog.dismiss();
             }
         });
 
@@ -206,7 +239,6 @@ public class UserProfileFragment extends Fragment {
                     LoaderUtil.dismisProgressBar(getActivity(), dialog);
 
                     dogetUserDetails();
-
 
 
                     Toast.makeText(getActivity(), "updated ", Toast.LENGTH_LONG).show();
