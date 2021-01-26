@@ -43,6 +43,15 @@ public class MathUtil {
 
     }
 
+    public static boolean validateMobileNumberLength(String mobile){
+
+        if(mobile.length()<10){
+            return false;
+        }
+        return true;
+
+    }
+
     public static boolean validateAddress(String address) {
         if (address.length() < 5) {
             return false;

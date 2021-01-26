@@ -16,9 +16,9 @@ public class LoaderUtil {
         Dialog csprogress;
         csprogress = new Dialog(context, R.style.MyAlertDialogStyle);
         csprogress.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        csprogress.setCancelable(false);
+        csprogress.setCancelable(true);
         csprogress.setContentView(R.layout.layout_progressbar);
-        csprogress.setCanceledOnTouchOutside(false);
+        csprogress.setCanceledOnTouchOutside(true);
         csprogress.show();
         return csprogress;
     }

@@ -88,7 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/input_login_password"
             android:layout_marginTop="@dimen/ten_dp"
-            android:enabled="false"
+            android:enabled="true"
+            android:background="@drawable/rectangle_shpae"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/login" />
 

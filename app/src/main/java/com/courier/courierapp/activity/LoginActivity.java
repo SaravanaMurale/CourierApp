@@ -48,6 +48,7 @@ import retrofit2.Response;
 
 import static com.courier.courierapp.utils.AppConstant.RESOLVE_HINT;
 import static com.courier.courierapp.utils.MathUtil.validateMobile;
+import static com.courier.courierapp.utils.MathUtil.validateMobileNumberLength;
 import static com.courier.courierapp.utils.MathUtil.validatePassword;
 
 
@@ -119,14 +120,46 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loginUser();
+                String userMobile = loginMobile.getText().toString().trim();
+                String userPassword = loginPassword.getText().toString().trim();
+
+                if (userMobile.isEmpty() || userMobile.equals("") || userMobile.equals(null)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter Mobile Number", Toast.LENGTH_LONG).show();
+                    return;
+
+                }
+
+                if (userPassword.isEmpty() || userPassword.equals("") || userPassword.equals(null)) {
+                    Toast.makeText(LoginActivity.this, "Please Enter Password", Toast.LENGTH_LONG).show();
+                    return;
+
+                }
+
+                if(!validatePassword(userPassword)){
+                    Toast.makeText(LoginActivity.this, "Password should have minimum 6 characters", Toast.LENGTH_LONG).show();
+                    loginPassword.findFocus();
+                    return;
+                }
+
+                if(!validateMobileNumberLength(userMobile)){
+                    Toast.makeText(LoginActivity.this, "Mobile number should be in 10 digits", Toast.LENGTH_LONG).show();
+                    loginMobile.findFocus();
+                    return;
+                }
+
+                if(validateMobile(userMobile) && validatePassword(userPassword)){
+                    loginUser();
+                }
+
+
+
 
             }
         });
 
 
-        loginMobile.addTextChangedListener(new MyTextWatcher(loginMobile));
-        loginPassword.addTextChangedListener(new MyTextWatcher(loginPassword));
+        /*loginMobile.addTextChangedListener(new MyTextWatcher(loginMobile));
+        loginPassword.addTextChangedListener(new MyTextWatcher(loginPassword));*/
 
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
