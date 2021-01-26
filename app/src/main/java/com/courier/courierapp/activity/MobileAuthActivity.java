@@ -1,4 +1,4 @@
-package com.courier.courierapp;
+package com.courier.courierapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.courier.courierapp.activity.LoginActivity;
-import com.courier.courierapp.activity.PasswordChangeActivity;
+import com.courier.courierapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -114,7 +113,7 @@ public class MobileAuthActivity extends AppCompatActivity {
                         verifyButton.setEnabled(true);
                         sendButton.setEnabled(false);
 //                        resendButton.setEnabled(true);
-                        Toast.makeText(MobileAuthActivity.this, "Code has been sent, please check and verify...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MobileAuthActivity.this, "Please Wait...", Toast.LENGTH_SHORT).show();
                     }
                 };
 

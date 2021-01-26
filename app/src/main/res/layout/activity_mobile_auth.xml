@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MobileAuthActivity"
-    android:background="@color/gray">
+    tools:context=".activity.MobileAuthActivity"
+    android:background="@drawable/bg"
+    >
 
     <!--  Step1: Generate OTP  -->
     <RelativeLayout
         android:id="@+id/phoneAuth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:padding="8dp"
@@ -73,7 +74,7 @@
         android:id="@+id/receiveOTP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:visibility="visible">
 
         <TextView

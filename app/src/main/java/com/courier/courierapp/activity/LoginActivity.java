@@ -20,7 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.courier.courierapp.MobileAuthActivity;
 import com.courier.courierapp.R;
 import com.courier.courierapp.model.BaseResponse;
 import com.courier.courierapp.model.GmailLoginResponse;
@@ -28,7 +27,6 @@ import com.courier.courierapp.model.GmailRegisterRequest;
 import com.courier.courierapp.model.LoginAuthResponse;
 import com.courier.courierapp.model.LoginRequest;
 import com.courier.courierapp.model.LoginResponse;
-import com.courier.courierapp.model.SavePushNotification;
 import com.courier.courierapp.retrofit.ApiClient;
 import com.courier.courierapp.retrofit.ApiInterface;
 import com.courier.courierapp.utils.LoaderUtil;

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.courier.courierapp.MobileAuthActivity;
 import com.courier.courierapp.R;
 import com.courier.courierapp.model.RegisterRequest;
 import com.courier.courierapp.model.RegisterResponse;

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.courier.courierapp.MobileAuthActivity;
 import com.courier.courierapp.R;
 import com.courier.courierapp.model.BaseResponse;
 import com.courier.courierapp.retrofit.ApiClient;

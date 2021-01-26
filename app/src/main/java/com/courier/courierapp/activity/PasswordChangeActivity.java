@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,14 +48,39 @@ public class PasswordChangeActivity extends AppCompatActivity {
 
         btn_password_update=(Button)findViewById(R.id.btn_password_update);
 
-        newPassword.addTextChangedListener(new PasswordChangeActivity.MyTextWatcher(newPassword));
-        confirmPassword.addTextChangedListener(new PasswordChangeActivity.MyTextWatcher(confirmPassword));
+        /*newPassword.addTextChangedListener(new PasswordChangeActivity.MyTextWatcher(newPassword));
+        confirmPassword.addTextChangedListener(new PasswordChangeActivity.MyTextWatcher(confirmPassword));*/
 
         btn_password_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                updateForgetPassword();
+                String password = newPassword.getText().toString().trim();
+                String confirm_Password = confirmPassword.getText().toString().trim();
+
+                if (password.isEmpty() || password.equals("") || password.equals(null)) {
+                    Toast.makeText(PasswordChangeActivity.this, "Please Enter Password", Toast.LENGTH_LONG).show();
+                    return;
+
+                }
+
+                if (confirm_Password.isEmpty() || confirm_Password.equals("") || confirm_Password.equals(null)) {
+                    Toast.makeText(PasswordChangeActivity.this, "Please Enter Confirm Password", Toast.LENGTH_LONG).show();
+                    return;
+
+                }
+
+                if(!password.equals(confirm_Password)){
+                    Toast.makeText(PasswordChangeActivity.this, "Password Mismatch", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(validatePassword(confirm_Password) && validatePassword(password) && password.equals(confirm_Password)){
+                    updateForgetPassword();
+                }
+
+
+
 
             }
         });
@@ -66,9 +92,9 @@ public class PasswordChangeActivity extends AppCompatActivity {
 
         ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
 
-        LoginRequest loginRequest=new LoginRequest(mobileNumber,confirmPassword.getText().toString());
+        LoginRequest loginRequest=new LoginRequest(mobileNumber,confirmPassword.getText().toString().trim());
 
-        Call<BaseResponse> call=apiInterface.updateForgetPassword();
+        Call<BaseResponse> call=apiInterface.updateForgetPassword(loginRequest);
 
         call.enqueue(new Callback<BaseResponse>() {
             @Override

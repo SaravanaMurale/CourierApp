@@ -50,7 +50,7 @@
         <activity android:name=".activity.MapActivity" />
         <activity android:name=".activity.DrawerActivity" />
         <activity android:name=".activity.PDFGenerationActivity" />
-        <activity android:name=".MobileAuthActivity" />
+        <activity android:name=".activity.MobileAuthActivity" />
         <activity android:name=".activity.SignUpActivity">
 
         </activity>

@@ -89,7 +89,7 @@ public interface ApiInterface {
 
     @PUT(BaseURL.DOMAIN_NAME + "forgotpassword")
     @Headers({"Content-Type:application/json"})
-    Call<BaseResponse> updateForgetPassword();
+    Call<BaseResponse> updateForgetPassword(@Body LoginRequest loginRequest);
 
     @POST(BaseURL.DOMAIN_NAME + "updateEmail")
     @Headers({"Content-Type:application/json"})
