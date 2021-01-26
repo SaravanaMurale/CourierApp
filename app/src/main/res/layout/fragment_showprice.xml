@@ -64,7 +64,7 @@
                 android:layout_marginRight="@dimen/fifteen_dp"
                 android:layout_toLeftOf="@id/priceArrow"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Today End Of The Day" />
+                android:text="Payment Not Confirmed" />
 
             <ImageView
                 android:id="@+id/priceArrow"

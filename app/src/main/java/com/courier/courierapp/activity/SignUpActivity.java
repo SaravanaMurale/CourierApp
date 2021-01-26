@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ import retrofit2.Response;
 import static com.courier.courierapp.utils.AppConstant.RESOLVE_HINT;
 import static com.courier.courierapp.utils.MathUtil.passwordMatch;
 import static com.courier.courierapp.utils.MathUtil.validateMobile;
+import static com.courier.courierapp.utils.MathUtil.validateName;
 import static com.courier.courierapp.utils.MathUtil.validatePassword;
 
 
@@ -78,11 +80,11 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = (Button) findViewById(R.id.btn_signup);
         login = (TextView) findViewById(R.id.btn_login);
 
-        inputName.addTextChangedListener(new MyTextWatcher(inputName));
+        //inputName.addTextChangedListener(new MyTextWatcher(inputName));
         //inputMobile.addTextChangedListener(new MyTextWatcher(inputMobile));
         inputMobile.setText(mobileNumber);
-        inputPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
-        inputcPassword.addTextChangedListener(new MyTextWatcher(inputcPassword));
+        //inputPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
+        //inputcPassword.addTextChangedListener(new MyTextWatcher(inputcPassword));
 
         gmailSignup = (GoogleSignInButton) findViewById(R.id.gmailSignup);
 
@@ -104,8 +106,70 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String userName = inputName.getText().toString().trim();
+                String userMobile = inputMobile.getText().toString().trim();
+                String userPassword = inputPassword.getText().toString().trim();
+                String cPassword = inputcPassword.getText().toString().trim();
 
-                registerUser();
+                if (userName.isEmpty() || userName.equals("") || userName.equals(null)) {
+                    Toast.makeText(SignUpActivity.this, "Please Enter Name", Toast.LENGTH_LONG).show();
+                    inputName.findFocus();
+                    return;
+
+                }if (userMobile.isEmpty() || userMobile.equals("") || userMobile.equals(null)) {
+                    Toast.makeText(SignUpActivity.this, "Please Enter Mobile Number", Toast.LENGTH_LONG).show();
+                    inputMobile.findFocus();
+                    return;
+
+                }
+                if (userPassword.isEmpty() || userPassword.equals("") || userPassword.equals(null)) {
+                    Toast.makeText(SignUpActivity.this, "Please Enter Password", Toast.LENGTH_LONG).show();
+                    inputPassword.findFocus();
+                    return;
+
+                }
+                if (cPassword.isEmpty() || cPassword.equals("") || cPassword.equals(null)) {
+                    Toast.makeText(SignUpActivity.this, "Please Enter Confirm Password", Toast.LENGTH_LONG).show();
+                    inputcPassword.findFocus();
+                    return;
+
+                }
+
+                if(!validateName(userName)){
+                    Toast.makeText(SignUpActivity.this, "Please Enter Valid Name", Toast.LENGTH_LONG).show();
+                    inputName.findFocus();
+                    return;
+                }
+
+                if(!validateMobile(userMobile)){
+                    Toast.makeText(SignUpActivity.this, "Please Enter Valid Mobile", Toast.LENGTH_LONG).show();
+                    inputMobile.findFocus();
+                    return;
+                }
+
+                if(!validatePassword(userPassword)){
+                    Toast.makeText(SignUpActivity.this, "Please Enter Valid Password", Toast.LENGTH_LONG).show();
+                    inputPassword.findFocus();
+                    return;
+                }
+                if(!validatePassword(cPassword)){
+                    Toast.makeText(SignUpActivity.this, "Please Enter Valid Password", Toast.LENGTH_LONG).show();
+                    inputcPassword.findFocus();
+                    return;
+                }
+
+
+                if(!userPassword.equals(cPassword)){
+                    Toast.makeText(SignUpActivity.this, "Password Mismatch", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(validateName(userName) && validateMobile(userMobile) && validatePassword(userPassword) && validatePassword(cPassword) && userPassword.equals(cPassword)){
+                    registerUser();
+                }
+
+
+
 
                 /*Intent intent = new Intent(SignUpActivity.this, OTPActivity.class);
                 launchActivity(intent);*/
