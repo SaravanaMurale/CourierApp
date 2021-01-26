@@ -69,6 +69,13 @@ public class DrawerActivity extends AppCompatActivity
 
         }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                triggerPushNotification();
+            }
+        }, 500);
+
 
 
         /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
@@ -107,6 +114,32 @@ public class DrawerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void triggerPushNotification() {
+
+        dialog = LoaderUtil.showProgressBar(this);
+        ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
+
+        int userid = PreferenceUtil.getValueInt(DrawerActivity.this, PreferenceUtil.USER_ID);
+        Call<BaseResponse> call = apiInterface.triggerNotificationFromServer(PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.BEARER) + " " + PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.AUTH_TOKEN), userid);
+        call.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+
+                System.out.println("NotificationTriggered");
+                LoaderUtil.dismisProgressBar(DrawerActivity.this, dialog);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+
+                System.out.println("NotificationIsNotTriggered");
+                LoaderUtil.dismisProgressBar(DrawerActivity.this, dialog);
+            }
+        });
+
+
     }
 
     private void saveFirebaseNotificationTokenInServer() {
