@@ -21,7 +21,10 @@ import com.courier.courierapp.fragment.SchedulePickupFragment;
 import com.courier.courierapp.fragment.TrackShipmentFragment;
 import com.courier.courierapp.fragment.UserProfileFragment;
 import com.courier.courierapp.utils.PreferenceUtil;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +35,27 @@ public class DrawerActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+
+
+                if(newToken!=null){
+                    //saveFirebaseNotificationTokenInServer();
+                    String token=PreferenceUtil.getValueString(DrawerActivity.this,PreferenceUtil.NOTIFICATION);
+                    System.out.println("TOKENGENINCOURIERAPP"+token);
+                    PreferenceUtil.setValueString(DrawerActivity.this, PreferenceUtil.NOTIFICATION, newToken);
+                }else {
+                    System.out.println("NOTOKENGENERATED");
+                }
+
+
+
+            }
+        });
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

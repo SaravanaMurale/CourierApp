@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
                     @Override
                     public void onSuccess(InstanceIdResult instanceIdResult) {
                         String newToken = instanceIdResult.getToken();
-                        PreferenceUtil.setValueString(SplashScreen.this, "notification_token", newToken);
+                        PreferenceUtil.setValueString(SplashScreen.this, PreferenceUtil.NOTIFICATION, newToken);
                     }
                 });
             }
