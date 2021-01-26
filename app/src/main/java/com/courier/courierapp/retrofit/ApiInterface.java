@@ -6,6 +6,7 @@ import com.courier.courierapp.model.EmailUpdateRequest;
 import com.courier.courierapp.model.GetMyAllShipmentDTO;
 import com.courier.courierapp.model.GetMyAllShipmentResponse;
 import com.courier.courierapp.model.GetPaymentUserDetailsRequest;
+import com.courier.courierapp.model.GetToeknResponse;
 import com.courier.courierapp.model.GmailLoginResponse;
 import com.courier.courierapp.model.GmailRegisterRequest;
 import com.courier.courierapp.model.LoginAuthResponse;
@@ -142,6 +143,9 @@ public interface ApiInterface {
     @Headers({"Content-Type:application/json"})
     Call<BaseResponse> saveNotificationTokenInServer(@Header("Authorization") String token,@Body LoginResponse loginResponse);
 
+    @GET(BaseURL.DOMAIN_NAME + "getNotification/{userid}")
+    @Headers({"Content-Type:application/json"})
+    Call<GetToeknResponse> getPushNotificationToken(@Header("Authorization") String token, @Path("userid") int user_id);
 
 
 }

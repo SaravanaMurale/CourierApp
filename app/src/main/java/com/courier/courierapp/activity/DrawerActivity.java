@@ -1,5 +1,6 @@
 package com.courier.courierapp.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,14 +21,27 @@ import com.courier.courierapp.fragment.QuoteFragment;
 import com.courier.courierapp.fragment.SchedulePickupFragment;
 import com.courier.courierapp.fragment.TrackShipmentFragment;
 import com.courier.courierapp.fragment.UserProfileFragment;
+import com.courier.courierapp.model.BaseResponse;
+import com.courier.courierapp.model.GetToeknResponse;
+import com.courier.courierapp.model.LoginResponse;
+import com.courier.courierapp.retrofit.ApiClient;
+import com.courier.courierapp.retrofit.ApiInterface;
+import com.courier.courierapp.utils.LoaderUtil;
 import com.courier.courierapp.utils.PreferenceUtil;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Dialog dialog;
+    String previousTokenFromServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +50,18 @@ public class DrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+
+        getPushNotificationFromServer();
+        String currentNotificationToken=PreferenceUtil.getValueString(DrawerActivity.this,PreferenceUtil.NOTIFICATION);
+        if(!previousTokenFromServer.equals(currentNotificationToken)){
+            saveFirebaseNotificationTokenInServer();
+        }else if(previousTokenFromServer.equals(currentNotificationToken)) {
+
+        }
+
+
+
+        /*FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 String newToken = instanceIdResult.getToken();
@@ -55,7 +80,7 @@ public class DrawerActivity extends AppCompatActivity
 
             }
         });
-
+*/
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -72,6 +97,79 @@ public class DrawerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void saveFirebaseNotificationTokenInServer() {
+
+        dialog = LoaderUtil.showProgressBar(this);
+        ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
+
+        /*int userid=PreferenceUtil.getValueInt(LoginActivity.this,PreferenceUtil.USER_ID);
+       String pToken=PreferenceUtil.getValueString(LoginActivity.this,PreferenceUtil.NOTIFICATION);*/
+
+        LoginResponse loginResponse=new LoginResponse(PreferenceUtil.getValueInt(DrawerActivity.this,PreferenceUtil.USER_ID),PreferenceUtil.getValueString(DrawerActivity.this,PreferenceUtil.NOTIFICATION));
+
+        Call<BaseResponse> call=apiInterface.saveNotificationTokenInServer(PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.BEARER) + " " + PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.AUTH_TOKEN),loginResponse);
+        call.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+
+                BaseResponse baseResponse=response.body();
+                LoaderUtil.dismisProgressBar(DrawerActivity.this, dialog);
+                if(baseResponse!=null){
+                    if(baseResponse.getSuccess()){
+                        System.out.println("TokenInsertedSuccessfully");
+                    }else {
+                        System.out.println("TokenIsNotInsertedSuccessfully");
+                    }
+                }else {
+                    return;
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                LoaderUtil.dismisProgressBar(DrawerActivity.this, dialog);
+            }
+        });
+
+
+    }
+
+    private void getPushNotificationFromServer() {
+
+        dialog = LoaderUtil.showProgressBar(this);
+        ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
+
+        String token = PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.BEARER) + " " + PreferenceUtil.getValueString(DrawerActivity.this, PreferenceUtil.AUTH_TOKEN);
+        int userId = PreferenceUtil.getValueInt(DrawerActivity.this, PreferenceUtil.USER_ID);
+
+        Call<GetToeknResponse> call=apiInterface.getPushNotificationToken(token,userId);
+        call.enqueue(new Callback<GetToeknResponse>() {
+            @Override
+            public void onResponse(Call<GetToeknResponse> call, Response<GetToeknResponse> response) {
+
+                GetToeknResponse getToeknResponse=response.body();
+
+                if (getToeknResponse!=null){
+                    previousTokenFromServer=getToeknResponse.getToken();
+                }else {
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<GetToeknResponse> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
     @Override

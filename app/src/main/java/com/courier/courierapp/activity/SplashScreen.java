@@ -32,6 +32,8 @@ public class SplashScreen extends AppCompatActivity {
                     public void onSuccess(InstanceIdResult instanceIdResult) {
                         String newToken = instanceIdResult.getToken();
                         PreferenceUtil.setValueString(SplashScreen.this, PreferenceUtil.NOTIFICATION, newToken);
+                        String token=PreferenceUtil.getValueString(SplashScreen.this,PreferenceUtil.NOTIFICATION);
+                        System.out.println("GENTOKEN"+token);
                     }
                 });
             }
