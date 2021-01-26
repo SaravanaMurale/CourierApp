@@ -78,11 +78,19 @@ public class MyShipmentsFragment extends Fragment implements MyShipmentAdapter.M
 
                 if (getMyAllShipmentResponse != null) {
                     List<GetMyAllShipmentDTO> getMyAllShipmentDTOS = getMyAllShipmentResponse.getGetMyAllShipmentDTOList();
-                    myShipmentAdapter.setDate(getMyAllShipmentDTOS);
 
-                    LoaderUtil.dismisProgressBar(getActivity(), dialog);
+                    if(getMyAllShipmentDTOS.size()==0){
+                        LoaderUtil.dismisProgressBar(getActivity(), dialog);
+                        Toast.makeText(getActivity(), "You dont have any shipment yet", Toast.LENGTH_LONG).show();
+                    }else if(getMyAllShipmentDTOS.size()>0){
+                        myShipmentAdapter.setDate(getMyAllShipmentDTOS);
 
-                } else if (getMyAllShipmentResponse == null) {
+                        LoaderUtil.dismisProgressBar(getActivity(), dialog);
+
+                    }
+
+
+                } else {
                     LoaderUtil.dismisProgressBar(getActivity(), dialog);
                     Toast.makeText(getActivity(), "You dont have any shipment yet", Toast.LENGTH_LONG).show();
                 }
@@ -92,7 +100,7 @@ public class MyShipmentsFragment extends Fragment implements MyShipmentAdapter.M
 
             @Override
             public void onFailure(Call<GetMyAllShipmentResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(getActivity(), dialog);
             }
         });
 

@@ -78,11 +78,18 @@ public class TrackShipmentFragment extends Fragment implements TrackShipmentAdap
 
                 if (getMyAllShipmentResponse != null) {
                     List<GetMyAllShipmentDTO> getMyAllShipmentDTOS = getMyAllShipmentResponse.getGetMyAllShipmentDTOList();
-                    trackShipmentAdapter.setDate(getMyAllShipmentDTOS);
 
-                    LoaderUtil.dismisProgressBar(getActivity(), dialog);
+                    if (getMyAllShipmentDTOS.size() == 0) {
+                        LoaderUtil.dismisProgressBar(getActivity(), dialog);
+                        Toast.makeText(getActivity(), "You dont have any tracking shipment", Toast.LENGTH_LONG).show();
+                    } else if (getMyAllShipmentDTOS.size() > 0) {
+                        trackShipmentAdapter.setDate(getMyAllShipmentDTOS);
 
-                } else if (getMyAllShipmentResponse == null) {
+                        LoaderUtil.dismisProgressBar(getActivity(), dialog);
+
+                    }
+
+                } else {
                     LoaderUtil.dismisProgressBar(getActivity(), dialog);
                     Toast.makeText(getActivity(), "You dont have any tracking shipment", Toast.LENGTH_LONG).show();
                 }
@@ -91,7 +98,7 @@ public class TrackShipmentFragment extends Fragment implements TrackShipmentAdap
 
             @Override
             public void onFailure(Call<GetMyAllShipmentResponse> call, Throwable t) {
-
+                LoaderUtil.dismisProgressBar(getActivity(), dialog);
             }
         });
 
